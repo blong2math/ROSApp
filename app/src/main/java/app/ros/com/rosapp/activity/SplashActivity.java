@@ -1,12 +1,14 @@
 package app.ros.com.rosapp.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import app.ros.com.rosapp.R;
 
-public class SplashActivity extends Activity {
+import app.ros.com.rosapp.R;
+import app.ros.com.rosapp.base.BaseActivity;
+import app.ros.com.rosapp.helper.SwitchHelper;
+
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +34,14 @@ public class SplashActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void switchNext(){
+        getWindow().getDecorView().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                SwitchHelper.startActivity(getActivity(), MainActivity.class);
+            }
+        }, 2000L);
     }
 }

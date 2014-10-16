@@ -1,8 +1,7 @@
 package app.ros.com.rosapp.activity;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -14,8 +13,9 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
 import app.ros.com.rosapp.R;
+import app.ros.com.rosapp.base.BaseActivity;
 
-public class MainActivity extends Activity
+public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
