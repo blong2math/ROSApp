@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import app.ros.com.rosapp.R;
 import app.ros.com.rosapp.base.BaseActivity;
 import app.ros.com.rosapp.helper.SwitchHelper;
+import app.ros.com.rosview.TestViewActivity;
 
 public class SplashActivity extends BaseActivity {
 
@@ -14,6 +15,8 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        switchNext();
     }
 
 
@@ -40,7 +43,7 @@ public class SplashActivity extends BaseActivity {
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SwitchHelper.startActivity(getActivity(), MainActivity.class);
+                SwitchHelper.startActivity(getActivity(), TestViewActivity.class);
             }
         }, 2000L);
     }

@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="app.ros.com.rosview.TestViewActivity"
+            android:label="@string/title_activity_test_view" >
+        </activity>
     </application>
 
 </manifest>

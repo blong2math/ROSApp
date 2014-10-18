@@ -12,5 +12,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_test_view">TestViewActivity</string>
 
 </resources>
