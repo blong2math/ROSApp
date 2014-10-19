@@ -24,6 +24,10 @@
             android:name="app.ros.com.rosview.TestViewActivity"
             android:label="@string/title_activity_test_view" >
         </activity>
+        <activity
+            android:name="app.ros.com.rosnotify.NotificationActivity"
+            android:label="@string/title_activity_notification" >
+        </activity>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import app.ros.com.rosapp.R;
 import app.ros.com.rosapp.base.BaseActivity;
 import app.ros.com.rosapp.helper.SwitchHelper;
-import app.ros.com.rosview.TestViewActivity;
+import app.ros.com.rosnotify.NotificationActivity;
 
 public class SplashActivity extends BaseActivity {
 
@@ -43,7 +43,7 @@ public class SplashActivity extends BaseActivity {
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SwitchHelper.startActivity(getActivity(), TestViewActivity.class);
+                SwitchHelper.startActivity(getActivity(), NotificationActivity.class);
             }
         }, 2000L);
     }
