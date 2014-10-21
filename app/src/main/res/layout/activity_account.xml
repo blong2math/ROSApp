@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    tools:context="app.ros.com.rosapp.view.activity.AccountActivity">
+    <ImageView
+        android:id="@+id/account_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/default_pic_avatar"/>
+    <TextView
+        android:id="@+id/account_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_image"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="UnICorN" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_username"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:textColor="@android:color/darker_gray"
+        android:text="@string/history_records"/>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/account_username"
+        android:layout_marginTop="34dp"/>
+
+</RelativeLayout>

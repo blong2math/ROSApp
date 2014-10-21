@@ -1,9 +1,39 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent"
-    android:dividerHeight="0dp"
+    android:orientation="vertical"
     android:background="#cccc"
-    tools:context="app.ros.com.rosapp.view.activity.NavigationDrawerFragment" />
+    tools:context="app.ros.com.rosapp.view.fragment.NavigationDrawerFragment">
+    <LinearLayout
+        android:id="@+id/drawer_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/drawer_user_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic_avatar"/>
+        <TextView
+            android:id="@+id/drawer_user_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:text="UnICorN"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:choiceMode="singleChoice"
+        android:dividerHeight="1dp"
+        android:textAlignment="center"
+        android:divider="@android:color/transparent"/>
+
+</LinearLayout>

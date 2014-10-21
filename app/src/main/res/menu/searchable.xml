@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="app.ros.com.rosapp.view.activity.MainActivity" >
-    <item android:id="@+id/action_notify"
+    tools:context="app.ros.com.rosapp.view.activity.SearchableActivity" >
+    <item android:id="@+id/action_settings"
         android:title="@string/action_notify"
         android:icon="@drawable/ic_action_notify"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="ifRoom" />
 </menu>
