@@ -59,7 +59,7 @@ public class MainFragment extends BaseFragment {
     protected void onInitialize(Bundle savedInstanceState) {
         super.onInitialize(savedInstanceState);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://map.baidu.com/");
+        webView.loadUrl("");
     }
 
     @Override

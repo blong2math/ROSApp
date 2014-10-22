@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="3dp">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="2dp">
+        <TextView
+            android:id="@+id/travel_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/travel_start_time"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/travel_arrival_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/travel_arrival_time"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/travel_narrow_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_gravity="end"
+        android:text="@string/travel_narrow_state"
+        android:textColor="@android:color/black" />
+
+</LinearLayout>

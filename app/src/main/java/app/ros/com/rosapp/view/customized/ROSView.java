@@ -23,9 +23,12 @@ import app.ros.com.rosapp.R;
 public class ROSView extends View {
 
     private Paint mPaint;
-    private Bitmap highlight;
+    private Bitmap highlightSmall;
+    private Bitmap highlightLarge;
     private static float highlightWidthCompressionRate = 0.0104f;
     private static float highlightHeightCompressionRate = 0.0177f;
+
+    private int[] interchangeIds = {102, 103, 105, 107, 318, 319, 301, 322, 612};
 
     private int[] tempStationIds = {102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113,
                                     114, 115, 116, 117, 119, 120, 121, 122, 123, 201, 202, 203,
@@ -70,7 +73,7 @@ public class ROSView extends View {
 
     private ArrayList<Integer> mStationIds = new ArrayList<Integer>();
     private ArrayList<Float2> mStationCoordinates = new ArrayList<Float2>();
-    private ArrayList<Float2> mDrawingPoints = new ArrayList<Float2>();
+    private ArrayList<Integer> mDrawingPoints = new ArrayList<Integer>();
 
     public ROSView(Context context) {
         super(context);
@@ -87,24 +90,21 @@ public class ROSView extends View {
     }
 
     public void setHighlight(int resId){
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        highlight = BitmapFactory.decodeResource(getResources(), resId);
-        Matrix matrix = new Matrix();
-        matrix.postScale(highlightWidthCompressionRate, highlightHeightCompressionRate);
-        highlight = Bitmap.createBitmap(highlight, 0, 0,
-                                        highlight.getWidth(), highlight.getHeight(), matrix, true);
+        Bitmap highlight1 = BitmapFactory.decodeResource(getResources(), resId);
+        Matrix matrix1 = new Matrix();
+        matrix1.postScale(highlightWidthCompressionRate, highlightHeightCompressionRate);
+        highlightSmall = Bitmap.createBitmap(highlight1, 0, 0,
+                                        highlight1.getWidth(), highlight1.getHeight(), matrix1, true);
+        Bitmap highlight2 = BitmapFactory.decodeResource(getResources(), resId);
+        Matrix matrix2 = new Matrix();
+        matrix2.postScale(highlightWidthCompressionRate * 3, highlightHeightCompressionRate * 3);
+        highlightLarge = Bitmap.createBitmap(highlight2, 0, 0,
+                highlight2.getWidth(), highlight2.getHeight(), matrix2, true);
 
     }
 
     public void highlightStation(ArrayList<Integer> stationIds){
-        mDrawingPoints.clear();
-        for(int i = 0; i < stationIds.size(); i++){
-            int stationId = stationIds.get(i);
-            int index = mStationIds.indexOf(stationId);
-            Float2 newPoint = new Float2(mStationCoordinates.get(index).x * getWidth(),
-                                         mStationCoordinates.get(index).y * getHeight());
-            mDrawingPoints.add(newPoint);
-        }
+        mDrawingPoints = stationIds;
         invalidate();
     }
 
@@ -112,9 +112,25 @@ public class ROSView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for(int i = 0; i < mDrawingPoints.size(); i++){
-            Float2 stationCoordinate = mDrawingPoints.get(i);
-            canvas.drawBitmap(highlight, stationCoordinate.x - 0.5f * highlight.getWidth(),
-                                         stationCoordinate.y - 0.5f * highlight.getHeight(), mPaint);
+            int stationId = mDrawingPoints.get(i);
+            int index = mStationIds.indexOf(stationId);
+            float x = mStationCoordinates.get(index).x * getWidth();
+            float y = mStationCoordinates.get(index).y * getHeight();
+            boolean isInterchange = false;
+            for(int j = 0; j < interchangeIds.length; j++){
+                isInterchange = isInterchange || (stationId == interchangeIds[j]);
+            }
+            System.out.println(stationId);
+            if(isInterchange){
+                System.out.println("Is Large");
+                canvas.drawBitmap(highlightLarge, x - 0.5f * highlightLarge.getWidth(),
+                        y - 0.5f * highlightLarge.getHeight(), mPaint);
+            }else{
+                System.out.println("Is Small");
+                canvas.drawBitmap(highlightSmall, x - 0.5f * highlightSmall.getWidth(),
+                                  y - 0.5f * highlightSmall.getHeight(), mPaint);
+            }
+
         }
     }
 }

@@ -47,11 +47,7 @@
         <activity
             android:name=".view.activity.AccountActivity"
             android:label="@string/title_activity_acount"
-            android:parentActivityName=".view.activity.MainActivity" >
-        </activity>
-        <activity
-            android:name=".view.activity.DataActivity"
-            android:label="@string/title_activity_data" >
+            android:parentActivityName=".view.activity.MainActivity">
         </activity>
     </application>
 

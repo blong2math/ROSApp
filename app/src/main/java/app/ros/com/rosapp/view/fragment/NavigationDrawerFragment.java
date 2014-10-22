@@ -3,11 +3,16 @@ package app.ros.com.rosapp.view.fragment;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -42,6 +47,8 @@ import app.ros.com.rosapp.view.dialog.LoginDialog;
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends BaseFragment {
+
+    private static final String ACTION_LOGIN_SUCCEED = "ACTION_LOGIN_SUCCEED";
 
     /**
      * Remember the position of the selected item.
@@ -153,16 +160,33 @@ public class NavigationDrawerFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-
         View view = inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(getBroadcastReceiver(), new IntentFilter(ACTION_LOGIN_SUCCEED));
 
         return view;
+    }
+
+    public BroadcastReceiver getBroadcastReceiver(){
+        return new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                setUserInfo();
+            }
+        };
     }
 
     @OnItemClick(R.id.list)
     private void OnListItemClicked(AdapterView<?> parent, View view, int position, long id) {
         selectItem(position);
+        // TODO
+        OwnerHelper ownerHelper = OwnerHelper.getSingleton(getContext());
+        if (1 == position && ownerHelper.getOwnerId() >= 0){
+            SwitchHelper.startActivity(getActivity(), AccountActivity.class, SwitchHelper.ANIM_SLIDE);
+        }
+        if (2 == position && ownerHelper.getOwnerId() >= 0 && "admin".equals(ownerHelper.getOwnerRole())){
+            // TODO: jumb to `monitorFragment`
+        }
     }
 
     public boolean isDrawerOpen() {
@@ -209,7 +233,6 @@ public class NavigationDrawerFragment extends BaseFragment {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                setUserInfo();
                 if (!isAdded()) {
                     return;
                 }

@@ -13,12 +13,11 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
  * Created by Huxley on 2014/10/20.
  */
 public abstract class BaseCallback extends RequestCallBack<String> {
-    public void onSuccess(JSONObject jobj){ /* null */ }
+    public void onSuccess(String json){ /* null */ }
 
     @Override
     public void onSuccess(ResponseInfo<String> stringResponseInfo) {
-        JSONObject jobj = JSON.parseObject(stringResponseInfo.result);
-        onSuccess(jobj);
+        onSuccess(stringResponseInfo.result);
     }
 
     @Override

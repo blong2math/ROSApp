@@ -6,13 +6,16 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -29,6 +32,7 @@ import app.ros.com.rosapp.view.fragment.NavigationDrawerFragment;
  * Created by Huxley on 2014/10/20.
  */
 public class LoginDialog extends DialogFragment {
+    private static final String ACTION_LOGIN_SUCCEED = "ACTION_LOGIN_SUCCEED";
 
     @ViewInject(R.id.dialog_login_username)
     private EditText username;
@@ -73,11 +77,13 @@ public class LoginDialog extends DialogFragment {
 
     class UserCallBack extends BaseCallback{
         @Override
-        public void onSuccess(JSONObject jobj) {
+        public void onSuccess(String json) {
+            JSONObject jobj = JSON.parseObject(json);
             OwnerHelper ownerHelper = OwnerHelper.getSingleton(getActivity());
             ownerHelper.setOwnerId(jobj.getInteger("id"));
             ownerHelper.setOwnerToken(jobj.getString("token"));
             ownerHelper.setOwnerAvater(jobj.getString("avater"));
+            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent(ACTION_LOGIN_SUCCEED));
         }
     }
 }

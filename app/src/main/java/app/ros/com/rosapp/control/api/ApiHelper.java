@@ -49,4 +49,15 @@ public class ApiHelper {
         post(URL + "/login", postData, callBack);
     }
 
+    public void postTravelInfo(String ori, String dst, RequestCallBack callBack){
+        Map<String, String> postData = new HashMap<String, String>();
+        postData.put("ori", ori);
+        postData.put("dst", dst);
+        post(URL + "/travelinfo", postData, callBack);
+    }
+
+    public void book(String subwayId, RequestCallBack callBack){
+        // TODO: Complete this api.
+    }
+
 }
